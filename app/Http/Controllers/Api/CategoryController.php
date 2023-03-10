@@ -48,4 +48,29 @@ class CategoryController extends Controller
         //return single category as a resource
         return new CategoryResource(true, 'Detail Data Category', $category);
     }
+
+    public function update(Request $request, $id)
+    {
+        //define validation rules
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required',
+            'enable'   => 'required|boolean',
+        ]);
+
+        //check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        //find category by ID
+        $category = Category::find($id);
+
+        $category->update([
+            'name'     => $request->name,
+            'enable'   => $request->enable,
+        ]);
+
+        //return response
+        return new CategoryResource(true, 'Data Category Berhasil Diubah!', $category);
+    }
 }
