@@ -39,4 +39,13 @@ class CategoryController extends Controller
         //return response
         return new CategoryResource(true, 'Data Category Berhasil Ditambahkan!', $category);
     }
+
+    public function show($id)
+    {
+        //find category by ID
+        $category = Category::find($id);
+
+        //return single category as a resource
+        return new CategoryResource(true, 'Detail Data Category', $category);
+    }
 }
