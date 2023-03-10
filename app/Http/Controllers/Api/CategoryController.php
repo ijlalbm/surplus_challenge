@@ -73,4 +73,17 @@ class CategoryController extends Controller
         //return response
         return new CategoryResource(true, 'Data Category Berhasil Diubah!', $category);
     }
+
+    public function destroy($id)
+    {
+
+        //find category by ID
+        $category = Category::find($id);
+
+        //delete category
+        $category->delete();
+
+        //return response
+        return new CategoryResource(true, 'Data Category Berhasil Dihapus!', null);
+    }
 }
