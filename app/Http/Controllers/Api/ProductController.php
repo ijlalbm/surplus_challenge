@@ -88,6 +88,6 @@ class ProductController extends Controller
         $product->delete();
 
         //return response
-        return new ProductResource(true, 'Data product Berhasil Dihapus!', null);
+        return new ProductResource(true, 'Data product Berhasil Dihapus', null);
     }
 }
