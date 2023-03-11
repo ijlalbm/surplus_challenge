@@ -102,4 +102,20 @@ class ImageController extends Controller
         //return response
         return new ImageResource(true, 'Data Image Berhasil Diubah!', $image);
     }
+
+    public function destroy($id)
+    {
+
+        //find image by ID
+        $image = Image::find($id);
+
+        //delete image
+        Storage::delete('public/file/'.$image->file);
+
+        //delete image
+        $image->delete();
+
+        //return response
+        return new ImageResource(true, 'Data Image Berhasil Dihapus!', null);
+    }
 }
