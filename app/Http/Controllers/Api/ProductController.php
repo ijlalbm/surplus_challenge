@@ -41,4 +41,13 @@ class ProductController extends Controller
         //return response
         return new ProductResource(true, 'Data Product Berhasil Ditambahkan!', $product);
     }
+
+    public function show($id)
+    {
+        //find product by ID
+        $product = Product::find($id);
+
+        //return single product as a resource
+        return new ProductResource(true, 'Detail Data Product', $product);
+    }
 }
