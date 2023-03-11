@@ -45,4 +45,13 @@ class ImageController extends Controller
         //return response
         return new ImageResource(true, 'Data Image Berhasil Ditambahkan', $image);
     }
+
+    public function show($id)
+    {
+        //find image by ID
+        $image = Image::find($id);
+
+        //return single image as a resource
+        return new ImageResource(true, 'Detail Data Image', $image);
+    }
 }
