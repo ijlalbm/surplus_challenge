@@ -23,7 +23,7 @@ class Image extends Model
     protected function file(): Attribute
     {
         return Attribute::make(
-            get: fn ($image) => asset('/storage/file/' . $image),
+            get: fn ($file) => asset('/storage/file/' . $file),
         );
     }
 
