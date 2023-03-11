@@ -22,3 +22,4 @@ Route::apiResource('/category', App\Http\Controllers\Api\CategoryController::cla
 Route::apiResource('/product', App\Http\Controllers\Api\ProductController::class);
 Route::apiResource('/image', App\Http\Controllers\Api\ImageController::class);
 Route::apiResource('/categoryProduct', App\Http\Controllers\Api\CategoryProductController::class);
+Route::apiResource('/productImage', App\Http\Controllers\Api\ProductImageController::class);

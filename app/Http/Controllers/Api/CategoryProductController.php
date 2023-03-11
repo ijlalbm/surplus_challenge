@@ -32,13 +32,6 @@ class CategoryProductController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        // find product in in categoryProduct table
-        $categoryProduct_id = CategoryProduct::where('product_id', $request->product_id);
-
-        if ($categoryProduct_id!=null) {
-            return response()->json(["success"=> false,"message" => "category produk ini sudah terdaftar"], 400);
-        }
-
         //find product_id by ID
         $product_id = Product::find($request->product_id);
 
@@ -52,16 +45,16 @@ class CategoryProductController extends Controller
                     'product_id'     => $request->product_id,
                     'category_id'    => $request->category_id,
                 ]);
-            }else{
-                return response()->json(["success"=> false,"message" => "category_id tidak terdaftar"], 400);
+            } else {
+                return response()->json(["success" => false, "message" => "category_id tidak terdaftar"], 400);
             }
         } else {
-            return response()->json(["success"=> false,"message" => "product_id tidak terdaftar"], 400);
+            return response()->json(["success" => false, "message" => "product_id tidak terdaftar"], 400);
         }
         //return response
         return new CategoryProductResource(true, 'Category Product berhasil dibuat', $categoryProduct);
     }
-    
+
     public function show($id)
     {
         //find categoryProduct by ID
@@ -70,6 +63,4 @@ class CategoryProductController extends Controller
         //return single categoryProduct as a resource
         return new CategoryProductResource(true, 'Detail kategori produk', $categoryProduct);
     }
-
-
 }
