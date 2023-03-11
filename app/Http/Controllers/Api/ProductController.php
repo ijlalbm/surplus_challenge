@@ -16,4 +16,29 @@ class ProductController extends Controller
         $product = Product::latest()->paginate(5);
         return new ProductResource(true, 'List of Product', $product);
     }
+
+    public function store(Request $request)
+    {
+        //define validation rules
+        $validator = Validator::make($request->all(), [
+            'name'              => 'required',
+            'description'       => 'required',
+            'enable'            => 'required|boolean',
+        ]);
+
+        //check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        //create product
+        $product = Product::create([
+            'name'              => $request->name,
+            'description'       => $request->description,
+            'enable'            => $request->enable,
+        ]);
+
+        //return response
+        return new ProductResource(true, 'Data Product Berhasil Ditambahkan!', $product);
+    }
 }
